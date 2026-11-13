@@ -4,8 +4,8 @@ backend:
   branch: main # O 'master', dependiendo de cómo se llame tu rama principal en GitHub
 
 # Dónde se guardarán las imágenes que subas desde el panel
-media_folder: "src/assets/blog"
-public_folder: "/assets/blog"
+media_folder: "/src/assets/blog"
+public_folder: "/src/assets/blog"
 
 collections:
   - name: "blog"
