@@ -2,7 +2,7 @@
 title: Xbox celebra su 25 aniversario y confirma Wolfenstein 3
 pubDate: 2026-11-13T12:32:00.000-06:00
 description: Xbox confirma el desarrollo del próximo titulo de la saga Wolfenstein
-heroImage: /assets/blog/wolfenstein-13-11-26.png
+heroImage: /src/assets/blog/wolfenstein-13-11-26.png
 ---
 Una gran noticia llego al FanFest de XBox en Seattle, Xbox confirma que Wolfenstein 3 esta oficialmente en produccion en manos de Machine Games, con Biran Bloom y Debra Wilson ded vuelta como el poderoso BJ Blazkowicz y Grace Walker. Aun no hay una fecha confirmada ya que aun es una fase temprana.
 
