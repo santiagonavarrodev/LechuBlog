@@ -10,50 +10,65 @@ const noticias = await getCollection('blog');
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-		<style>
-			.grid-noticias {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-				padding: 2rem;
-				align-items: center;
-				justify-items: center;
-				gap: 2rem;
-				gradient: linear-gradient(to bottom, #f0f0f0, #ffffff);
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>Bienvenido a {SITE_TITLE}</h1>
-			<h2>{SITE_WELCOME_MESSAGE}</h2>
-		</main>
-			<section class="grid-noticias">
-			{noticias.map((blog) => (
-				<article>
-				{blog.data.heroImage && (
-					<img src={blog.data.heroImage.src} alt={blog.data.title} width="1000" />
-				)}
-				<h2>{blog.data.title}</h2>
-				<p>{blog.data.description}</p>
-				<a href={`/blog/${blog.id}/`}>Leer más</a>
-				</article>
-			))}
-			</section>
-		<Footer />
-		<script is:inline>
-		if (window.netlifyIdentity) {
-			window.netlifyIdentity.on("init", (user) => {
-			if (!user) {
-				window.netlifyIdentity.on("login", () => {
-				document.location.href = "/admin/";
-				});
-			}
-			});
-		}
-		</script>
-	</body>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        <style>
+            @import "tailwindcss";
+        </style>
+    </head>
+    <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+        <Header />
+        
+        <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Título de bienvenida centrado -->
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">
+                {SITE_WELCOME_MESSAGE}
+            </h1>
+
+            <!-- Cuadrícula de noticias: 1 columna en móvil, 3 en PC -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {noticias.map((blog) => (
+                    <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow">
+                        <div>
+                            {blog.data.heroImage && (
+                                <img 
+                                    class="w-full h-48 object-cover" 
+                                    src={blog.data.heroImage.src} 
+                                    alt={blog.data.title} 
+                                />
+                            )}
+                            <div class="p-4">
+                                <h2 class="text-lg font-bold text-left mb-2">{blog.data.title}</h2>
+                                <p class="text-base text-gray-600 text-left mb-4">{blog.data.description}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 pt-0">
+                            <a 
+                                class="block text-center text-white py-2 px-4 rounded-md font-medium hover:bg-blue-700 transition-colors" 
+                                href={`/blog/${blog.id}/`}
+                            >
+                                Leer más
+                            </a>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </main>
+
+        <Footer />
+
+        <script is:inline>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+                });
+            }
+            });
+        }
+        </script>
+    </body>
 </html>

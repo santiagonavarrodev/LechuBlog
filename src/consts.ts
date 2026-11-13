@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'Lechu-Blog';
 export const SITE_DESCRIPTION = 'Welcome to my website!';
-export const SITE_WELCOME_MESSAGE = 'Noticias relevantes de la semana';
+export const SITE_WELCOME_MESSAGE = 'Noticias relevantes';
