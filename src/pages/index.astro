@@ -12,6 +12,7 @@ const noticias = await getCollection('blog');
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 		<style>
 			.grid-noticias {
 				display: grid;
@@ -43,5 +44,16 @@ const noticias = await getCollection('blog');
 			))}
 			</section>
 		<Footer />
+		<script is:inline>
+		if (window.netlifyIdentity) {
+			window.netlifyIdentity.on("init", (user) => {
+			if (!user) {
+				window.netlifyIdentity.on("login", () => {
+				document.location.href = "/admin/";
+				});
+			}
+			});
+		}
+		</script>
 	</body>
 </html>
