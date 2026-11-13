@@ -1,0 +1,47 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_WELCOME_MESSAGE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const noticias = await getCollection('blog');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.grid-noticias {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				padding: 2rem;
+				align-items: center;
+				justify-items: center;
+				gap: 2rem;
+				gradient: linear-gradient(to bottom, #f0f0f0, #ffffff);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Bienvenido a {SITE_TITLE}</h1>
+			<h2>{SITE_WELCOME_MESSAGE}</h2>
+		</main>
+			<section class="grid-noticias">
+			{noticias.map((blog) => (
+				<article>
+				{blog.data.heroImage && (
+					<img src={blog.data.heroImage.src} alt={blog.data.title} width="1000" />
+				)}
+				<h2>{blog.data.title}</h2>
+				<p>{blog.data.description}</p>
+				<a href={`/blog/${blog.id}/`}>Leer más</a>
+				</article>
+			))}
+			</section>
+		<Footer />
+	</body>
+</html>

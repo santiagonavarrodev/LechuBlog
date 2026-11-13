@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main # O 'master', dependiendo de cómo se llame tu rama principal en GitHub
+
+# Dónde se guardarán las imágenes que subas desde el panel
+media_folder: "src/assets/blog"
+public_folder: "@assets/blog"
+
+collections:
+  - name: "blog"
+    label: "Noticias"
+    folder: "src/content/blog"
+    create: true
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha de publicación", name: "pubDate", widget: "datetime"}
+      - {label: "Descripción", name: "description", widget: "text"}
+      - {label: "Imagen principal", name: "heroImage", widget: "image"}
+      - {label: "Contenido", name: "body", widget: "markdown"}
